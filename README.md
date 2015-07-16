@@ -82,9 +82,7 @@ Next, install the necessary dependencies and run the project via the command lin
 * [Office 365 APIs platform overview](http://msdn.microsoft.com/office/office365/howto/platform-development-overview)
 * [Office 365 unified API overview](https://msdn.microsoft.com/en-us/office/office365/howto/office-365-unified-api-overview)
 * [Get started with Office 365 APIs in JavaScript web applications](http://aka.ms/get-started-with-js)
-* [Office 365 Profile sample for Android](https://github.com/OfficeDev/O365-Android-Profile)
-* [Office 365 Profile sample for Windows](https://github.com/OfficeDev/O365-Win-Profile)
-* [Office 365 Profile sample for iOS](https://github.com/OfficeDev/O365-iOS-Profile)
+* [Other Office 365 Profile samples](https://github.com/OfficeDev?utf8=%E2%9C%93&query=Profile)
 
 ## Copyright
 Copyright (c) 2015 Microsoft. All rights reserved.
