@@ -1,0 +1,77 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this
+file. -->
+<!DOCTYPE html>
+<html ng-app="profileApp">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Office 365 Profile Angular sample</title>
+    <base href="/">
+    <!-- Third party dependencies. -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-loader.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.min.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal-angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.css">
+    <!-- App code. -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="controllers/navbarController.js"></script>
+    <script src="services/office365Factory.js"></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  
+  <body ng-controller="NavbarController as nav">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Office 365 Profile Angular sample</a>
+        </div>
+        <!-- navbar-header -->
+        <div class="navbar-collapse" collapse="nav.isCollapsed">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <p class="navbar-text">{{ userInfo.profile.name }}</p>
+            </li>
+            <li>
+              <a href="" ng-show="!userInfo.isAuthenticated" ng-click="nav.connect()">Connect</a>
+            </li>
+            <li>
+              <a href="" ng-show="userInfo.isAuthenticated" ng-click="nav.disconnect()">Disconnect</a>
+            </li>
+          </ul>
+        </div>
+        <!-- collapse navbar-collapse -->
+      </div>
+      <!-- container-fluid -->
+    </nav>
+    <div class="container">
+      <main>
+        <div ng-view></div>
+      </main>
+    </div>
+  </body>
+
+</html>
+<!-- O365-Angular-Profile, https://github.com/OfficeDev/O365-Angular-Profile Copyright (c) Microsoft Corporation All rights
+reserved. MIT License: Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this
+permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->

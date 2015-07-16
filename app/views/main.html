@@ -1,0 +1,131 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this
+file. -->
+<div class="container-fluid">
+  <div class="row" ng-show="!userInfo.isAuthenticated">
+    <div class="col-xs-6">
+      <h2 class="lead">Use the button in the navigation bar to connect to Office 365 and explore your tenant's directory.</h2>
+    </div>
+  </div>
+  <div class="row" ng-show="main.users.length > 0">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="user in main.users" ng-click="main.activeUser = user; main.selectUser();" ng-class="main.setUserClass(user.objectId)">
+          <a href="">{{ user.displayName }}</a>
+        </li>
+      </ul>
+    </div>
+    <!-- sidebar -->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-show="userInfo.isAuthenticated">
+      <h1 class="page-header">{{ main.activeUser.displayName }}</h1>
+      <tabset justified="true">
+        <tab active="main.makeUserDetailsTabActive" heading="User Details">
+          <br />
+          <img class="avatar" ng-src="{{ main.activeUser.photoUrl }}" />
+          <br />
+          <div>
+            <p class="detailKey">Job Title:</p>
+            <p class="detailValue">{{ main.activeUser.jobTitle || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Department:</p>
+            <p class="detailValue">{{ main.activeUser.department || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Hire Date:</p>
+            <p class="detailValue">{{ main.activeUser.hireDate || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Alias:</p>
+            <p class="detailValue">{{ main.activeUser.mailNickname || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Phone:</p>
+            <p class="detailValue">{{ main.activeUser.telephoneNumber || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">State:</p>
+            <p class="detailValue">{{ main.activeUser.state || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Country:</p>
+            <p class="detailValue">{{ main.activeUser.country || 'N/A' }}</p>
+          </div>
+          <div>
+            <p class="detailKey">Manager:</p>
+            <a href="" ng-click="main.setManager()" ng-show="main.activeUser.manager.displayName"><p class="detailValue">{{ main.activeUser.manager.displayName || 'N/A' }}</p></a>
+            <p class="detailValue" ng-hide="main.activeUser.manager.displayName">N/A</p>
+          </div>
+        </tab>
+        <tab heading="Direct Reports" disable="main.activeUser.directReports.length == 0">
+          <div ng-repeat="report in main.activeUser.directReports">
+            <br />
+            <a href="" ng-click="main.activeUser = report; main.selectUser();"><h3>{{ report.displayName }}</h3></a>
+            <div>
+              <p class="detailKey">Job Title:</p>
+              <p class="detailValue">{{ report.jobTitle || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">Department:</p>
+              <p class="detailValue">{{ report.department || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">Hire Date:</p>
+              <p class="detailValue">{{ report.hireDate || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">Alias:</p>
+              <p class="detailValue">{{ report.mailNickname || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">Phone:</p>
+              <p class="detailValue">{{ report.telephoneNumber || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">State:</p>
+              <p class="detailValue">{{ report.state || 'N/A' }}</p>
+            </div>
+            <div>
+              <p class="detailKey">Country:</p>
+              <p class="detailValue">{{ report.country || 'N/A' }}</p>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Groups" disable="main.activeUser.groups.length == 0">
+          <br />
+          <h4>{{ main.activeUser.displayName }} is a member of the following {{ main.activeUser.groups.length }} group<span ng-show="main.activeUser.groups.length > 1">s</span>.</h4>
+          <ul>
+            <li ng-repeat="group in main.activeUser.groups">{{ group.displayName }}</li>
+          </ul>
+        </tab>
+        <tab heading="Files" disable="main.activeUser.files.length == 0">
+          <h3>{{ main.activeUser.displayName }}'s Files</h3>
+          <table class="table table-striped">
+            <tr>
+              <th>Name</th>
+              <th>Last Modified</th>
+              <th>Link</th>
+            </tr>
+            <tr ng-repeat="file in main.activeUser.files">
+              <td>{{ file.name }}</td>
+              <td>{{ file.dateTimeLastModified | date: 'shortDate' }}</td>
+              <td>
+                <a href="{{ file.webUrl }}" target="_blank">Link</a>
+              </td>
+            </tr>
+          </table>
+        </tab>
+      </tabset>
+    </div>
+    <!-- main -->
+  </div>
+</div>
+<!-- O365-Angular-Profile, https://github.com/OfficeDev/O365-Angular-Profile Copyright (c) Microsoft Corporation All rights
+reserved. MIT License: Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this
+permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
+THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
