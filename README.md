@@ -29,7 +29,7 @@ This sample requires the following:
 
 5. Choose a name for the app, such as *O365-Angular-Profile*, and select **Web application and/or web API** as its **Type**. Then click the arrow to continue.
 
-6. The value of **Sign-on URL** is the URL where the application will be hosted. Use *http://localhost:8080/* for the sample project.
+6. The value of **Sign-on URL** is the URL where the application will be hosted. Use *http://127.0.0.1:8080/* for the sample project.
 
 7. The value of **App ID URI** is a unique identifier for Azure AD to identify the app. You can use http://{your_subdomain}/O365-Angular-Profile, where {your_subdomain} is the subdomain of .onmicrosoft you specified while signing up for your Office 365 Developer Site. Then click the check mark to provision the application.
 
@@ -64,9 +64,7 @@ Next, install the necessary dependencies and run the project via the command lin
 
 1. Install project dependencies by running ```npm install```.
 2. Now that all the project dependencies are installed, start the development server by running ```node server.js``` in the root folder.
-3. Navigate to ```http://localhost:8080/``` using Google Chrome.
-
-**Note** Because cookies are not accessible in Internet Explorer while your app is running in localhost, you'll need to use a different browser, such as Google Chrome, to test your application.
+3. Navigate to ```http://127.0.0.1:8080/``` in your web browser.
 
 ## Security notice
 [ADAL JS](https://github.com/AzureAD/azure-activedirectory-library-for-js) does not validate the token received from Azure AD. It relies on the app’s backend to do so, and until you call the backend, you don’t know if the user obtained an acceptable token. Business applications should have a server-side component for user authentication built into the web application for security reasons. Without this backend token validation, your app is susceptible to security attacks such as the [confused deputy problem](https://en.wikipedia.org/wiki/Confused_deputy_problem). Check out this [blog post](http://www.cloudidentity.com/blog/2015/02/19/introducing-adal-js-v1/) for more information.
