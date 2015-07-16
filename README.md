@@ -4,7 +4,7 @@ The Office 365 Profile Angular sample uses the Office 365 unified endpoint (prev
 
 The list of users in the Active Directory tenant appears in the sidebar. After selecting a user, their information, including user details, email address, hire date, manager, direct reports, and public files, are displayed in the main section of the app. All of this information comes from the unified endpoint.
 
-![O365 Profile Angular sample screenshot](./README assets/screenshot.png)
+![O365 Profile Angular sample screenshot](./README assets/screenshot.PNG)
 
 <a name="prerequisites"></a>
 ## Prerequisites
