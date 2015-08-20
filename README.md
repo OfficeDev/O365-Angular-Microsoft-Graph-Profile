@@ -14,12 +14,12 @@ This sample requires the following:
 * An Office 365 account. You can sign up for [an Office 365 Developer subscription](http://aka.ms/ro9c62) that includes the resources that you need to start building Office 365 apps.
 * A Microsoft Azure tenant to register your application. Azure Active Directory provides identity services that applications use for authentication and authorization. A trial subscription can be acquired here: [Microsoft Azure](http://aka.ms/jjm0q7).
 
-**Note**  You will also need to ensure your Azure subscription is bound to your Office 365 tenant. Check out the Active Directory team's blog post, [Creating and Managing Multiple Windows Azure Active Directories](http://aka.ms/lrb3ln) for instructions. In this post, the *Adding a new directory* section will explain how to do this. You can also read [Set up Azure Active Directory access for your Developer Site](http://aka.ms/fv273q) for more information.
+**Note**  You will also need to ensure your Azure subscription is bound to your Office 365 tenant. Check out the Active Directory team's blog post, [Creating and Managing Multiple Windows Azure Active Directories](http://aka.ms/lrb3ln) for instructions. In this post, the *Adding a new directory* section will explain how to do this. You can also read [Associate your Office 365 account with Azure AD to create and manage apps](http://aka.ms/fv273q) for more information.
 
 <a name="configure"></a>
 ## Register and configure the app
 
-1. Sign in to the [Azure Management Portal](https://manage.windowsazure.com/) using your Office 365 Developer Site credentials.
+1. Sign in to the [Azure Management Portal](https://manage.windowsazure.com/) using your Office 365 business account credentials.
 
 2. Click the **Active Directory** node in the left column and select the directory linked to your Office 365 subscription.
 
@@ -31,7 +31,7 @@ This sample requires the following:
 
 6. The value of **Sign-on URL** is the URL where the application will be hosted. Use *http://127.0.0.1:8080/* for the sample project.
 
-7. The value of **App ID URI** is a unique identifier for Azure AD to identify the app. You can use http://{your_subdomain}/O365-Angular-Profile, where {your_subdomain} is the subdomain of .onmicrosoft you specified while signing up for your Office 365 Developer Site. Then click the check mark to provision the application.
+7. The value of **App ID URI** is a unique identifier for Azure AD to identify the app. You can use http://{your_subdomain}/O365-Angular-Profile, where {your_subdomain} is the subdomain of .onmicrosoft you specified while signing up for your Office 365 business account. Then click the check mark to provision the application.
 
 8. Once the application is successfully added, the Quick Start page for the application appears. From here, select the **Configure** tab.
 
