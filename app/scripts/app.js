@@ -27,7 +27,6 @@
     // Configure ADAL JS. 
     adalAuthenticationServiceProvider.init(
       {
-        tenant: tenant,
         clientId: clientId,
         endpoints: {
           'https://graph.microsoft.com': 'https://graph.microsoft.com'

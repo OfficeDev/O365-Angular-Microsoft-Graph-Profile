@@ -3,7 +3,6 @@
 */
 
 // Enter the appropriate values from your app's entry in the Azure Management Portal. 
-var tenant = '{your_tenant}.onmicrosoft.com';
 var clientId = '{client_ID}';  
 
 // *********************************************************

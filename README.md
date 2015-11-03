@@ -58,7 +58,7 @@ In order to get an access token for unified API requests, the application will u
 <a name="run"></a>
 ## Run the app
 
-Open *app/scripts/config.js* and replace *{your_tenant}* with the subdomain of .onmicrosoft you specified for your Office 365 tenant and replace *{client_ID}* with the client ID of your registered Azure application (found on the **Configure** tab of your application's entry in the Azure Management Portal).
+Open *app/scripts/config.js* and replace *{client_ID}* with the client ID of your registered Azure application (found on the **Configure** tab of your application's entry in the Azure Management Portal).
 
 Next, install the necessary dependencies and run the project via the command line. Begin by opening a command prompt and navigating to the root folder. Once there, follow the steps below.
 

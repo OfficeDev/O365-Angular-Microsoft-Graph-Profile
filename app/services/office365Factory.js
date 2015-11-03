@@ -21,8 +21,7 @@
 		/////////////////////////////////////////
 		// End of exposed properties and methods.
 		
-		var baseUrl = 'https://graph.microsoft.com/beta';
-		var tenantPath = '/' + tenant;
+		var baseUrl = 'https://graph.microsoft.com/beta/myOrganization';
 		
 		/**
 		 * Gets all users in the tenant.
@@ -30,7 +29,7 @@
 		function getUsers() {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users'
+				url: baseUrl + '/users'
 			};
 
 			return $http(request);
@@ -42,7 +41,7 @@
 		function getDirectReports(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users/' + objectId + '/directReports'
+				url: baseUrl + '/users/' + objectId + '/directReports'
 			};
 
 			return $http(request);
@@ -54,7 +53,7 @@
 		function getGroups(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users/' + objectId + '/memberOf'
+				url: baseUrl + '/users/' + objectId + '/memberOf'
 			};
 
 			return $http(request);
@@ -66,7 +65,7 @@
 		function getFiles(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users/' + objectId + '/files'
+				url: baseUrl + '/users/' + objectId + '/drive/root/children'
 			};
 
 			return $http(request);
@@ -78,7 +77,7 @@
 		function getManager(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users/' + objectId + '/manager'
+				url: baseUrl + '/users/' + objectId + '/manager'
 			};
 
 			return $http(request);
@@ -90,7 +89,7 @@
 		function getProfilePicture(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + tenantPath + '/users/' + objectId + '/thumbnailPhoto',
+				url: baseUrl + '/users/' + objectId + '/thumbnailPhoto',
 				responseType: 'arraybuffer'
 			};
 

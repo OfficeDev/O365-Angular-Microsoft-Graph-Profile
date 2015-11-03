@@ -27,14 +27,13 @@
 		/////////////////////////////////////////
 		// End of exposed properties and methods.
 		
-		// Activate controller when it loads.
-		activate();
-		
 		/**
 		 * This function does any initialization work the 
 		 * controller needs.
 		 */
-		function activate() {
+		(function activate() {
+			$log.info('MainController invoked.');
+			
 			// Once the user is logged in, fetch the data.
 			if (adalAuthenticationService.userInfo.isAuthenticated) {
 				getUsersAsync()
@@ -44,7 +43,7 @@
 						$log.error(err);
 					});
 			}
-		};
+		})();
 		
 		/**
 		 * Clears the last selected user's data from the view model
@@ -165,14 +164,19 @@
 					$log.error(err);
 				});
 	
+			/**
+			 * As of 11/2/2015, the call to the get the selected user's files
+			 * is breaking the application. Commenting out this bit for now in 
+			 * hopes that it'll be resolved soon.
+			 */
 			// Get the selected user's files.
-			office365.getFiles(vm.activeUser.objectId)
-				.then(function (res) {
-					// Bind data to the view model.
-					vm.activeUser.files = res.data.value;
-				}, function (err) {
-					$log.error('Selected user does not have an Office 365 license assigned to them.', err);
-				});
+			// office365.getFiles(vm.activeUser.objectId)
+			// 	.then(function (res) {
+			// 		// Bind data to the view model.
+			// 		vm.activeUser.files = res.data.value;
+			// 	}, function (err) {
+			// 		$log.error('Selected user does not have an Office 365 license assigned to them.', err);
+			// 	});
 		};
 	};
 })();
