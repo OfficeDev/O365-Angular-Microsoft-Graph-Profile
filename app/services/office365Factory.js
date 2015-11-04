@@ -21,7 +21,7 @@
 		/////////////////////////////////////////
 		// End of exposed properties and methods.
 		
-		var baseUrl = 'https://graph.microsoft.com/beta/myOrganization';
+		var baseUrl = 'https://graph.microsoft.com/v1.0/myOrganization';
 		
 		/**
 		 * Gets all users in the tenant.
