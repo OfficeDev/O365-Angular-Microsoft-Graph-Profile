@@ -3,7 +3,7 @@
 */
 
 // Enter the appropriate values from your app's entry in the Azure Management Portal. 
-var clientId = '67325f1e-d62a-488a-83f6-881b5fe891d8';  
+var clientId = '{client_ID}';  
 
 // *********************************************************
 //
