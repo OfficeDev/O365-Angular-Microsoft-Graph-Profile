@@ -162,7 +162,7 @@
 					$log.error(err);
 				});
 	
-			// Get the selected user's files.
+			// Get the selected user's files that are shared with the signed-in user.
 			office365.getFiles(vm.activeUser.objectId)
 				.then(function (res) {
 					// Bind data to the view model.
