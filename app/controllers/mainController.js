@@ -93,7 +93,7 @@
 				office365.getUsers()
 					.then(function (res) {
 						// Bind data to the view model.
-						vm.users = res.data.value;	
+						vm.users = res.data.value.sort(byDisplayName);	
 					
 						// Set the selected user as the first user in the directory.		
 						vm.activeUser = vm.users[0];
@@ -171,6 +171,22 @@
 					$log.error('Unable to get files.', err);
 				});
 		};
+		
+		/**
+		 * @name byDisplayName
+		 * @desc Comparison function to sort users by displayName.
+		 */
+		function byDisplayName (a, b) {
+			if (a.displayName < b.displayName) {
+				return -1;
+			}
+			else if (a.displayName > b.displayName) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
 	};
 })();
 
