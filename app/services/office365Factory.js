@@ -89,8 +89,7 @@
 		function getProfilePicture(objectId) {
 			var request = {
 				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/thumbnailPhoto',
-				responseType: 'arraybuffer'
+				url: baseUrl + '/users/' + objectId + '/photo/$value'
 			};
 
 			return $http(request);

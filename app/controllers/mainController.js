@@ -117,10 +117,8 @@
 			office365.getProfilePicture(vm.activeUser.objectId)
 				.then(function (res) {	
 					// Convert raw image data to encoded data to display.
-					var dataArray = new Uint8Array(res.data);
-					var dataBinary = String.fromCharCode.apply(null, dataArray);
-					var dataEncoded = btoa(dataBinary);
-					var imageUrl = "data:image/*;base64," + dataEncoded;
+					console.log(res);
+					var imageUrl = "data:image/*;base64," + res.data;
 						
 					// Bind data to the view model.
 					vm.activeUser.photoUrl = imageUrl;
