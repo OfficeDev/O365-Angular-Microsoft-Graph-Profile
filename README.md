@@ -39,7 +39,7 @@ This sample requires the following:
 
 10. In this tutorial, we'll use the Office 365 unified API to get user data, so add the **Office 365 unified API (preview)** application. Click the plus sign in the application's row and then click the check mark at the top right to add it. Then click the check mark at the bottom right to continue.
 
-11. In the **Office 365 unified API (preview)** row, select **Delegated Permissions**, and in the selection list, select **Read all users' basic profiles**, **Read items in all site collections**, **Read signed-in users' files**, and **Access directory as the signed in user**.
+11. In the **Office 365 unified API (preview)** row, select **Delegated Permissions**, and in the selection list, select **Read all users' basic profiles**, **Read items in all site collections**, **Read signed-in user's files**, and **Access directory as the signed in user**.
 
 12. Click **Save** to save the app's configuration.
 
