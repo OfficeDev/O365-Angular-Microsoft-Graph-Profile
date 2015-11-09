@@ -164,19 +164,14 @@
 					$log.error(err);
 				});
 	
-			/**
-			 * As of 11/2/2015, the call to the get the selected user's files
-			 * is breaking the application. Commenting out this bit for now in 
-			 * hopes that it'll be resolved soon.
-			 */
-			// Get the selected user's files.
-			// office365.getFiles(vm.activeUser.objectId)
-			// 	.then(function (res) {
-			// 		// Bind data to the view model.
-			// 		vm.activeUser.files = res.data.value;
-			// 	}, function (err) {
-			// 		$log.error('Selected user does not have an Office 365 license assigned to them.', err);
-			// 	});
+			// Get the selected user's files that are shared with the signed-in user.
+			office365.getFiles(vm.activeUser.objectId)
+				.then(function (res) {
+					// Bind data to the view model.
+					vm.activeUser.files = res.data.value;
+				}, function (err) {
+					$log.error('Unable to get files.', err);
+				});
 		};
 	};
 })();
