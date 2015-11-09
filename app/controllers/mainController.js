@@ -164,14 +164,19 @@
 					$log.error(err);
 				});
 	
+			/**
+			 * As of 11/9, this function has a bug where it returns a bad error code
+			 * that causes the application to be reloaded indefinitely. Removing until
+			 * this bug is fixed.
+			 */
 			// Get the selected user's files that are shared with the signed-in user.
-			office365.getFiles(vm.activeUser.objectId)
-				.then(function (res) {
-					// Bind data to the view model.
-					vm.activeUser.files = res.data.value;
-				}, function (err) {
-					$log.error('Unable to get files.', err);
-				});
+			// office365.getFiles(vm.activeUser.objectId)
+			// 	.then(function (res) {
+			// 		// Bind data to the view model.
+			// 		vm.activeUser.files = res.data.value;
+			// 	}, function (err) {
+			// 		$log.error('Unable to get files.', err);
+			// 	});
 		};
 	};
 })();
