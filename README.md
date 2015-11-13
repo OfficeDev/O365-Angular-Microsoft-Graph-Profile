@@ -2,7 +2,7 @@
 
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
-The Office 365 Profile Angular sample uses the Microsoft Graph API to get user profile data from various services such as Active Directory, SharePoint, and OneDrive.
+The Office 365 Profile Angular sample uses the Microsoft Graph API (formally known as "unified API (preview)") to get user profile data from various services such as Active Directory, SharePoint, and OneDrive.
 
 The list of users in the Active Directory tenant appears in the sidebar. After selecting a user, their information, including user details, email address, hire date, manager, direct reports, and public files, are displayed in the main section of the app. All of this information comes from a single endpoint.
 
@@ -39,7 +39,7 @@ This sample requires the following:
 
 9. Scroll down to the **permissions to other applications** section and click the **Add application** button.
 
-10. In this tutorial, we'll use Microsoft Graph to get user data, so add the **Microsoft Graph API** application. Click the plus sign in the application's row and then click the check mark at the top right to add it. Then click the check mark at the bottom right to continue.
+10. In this tutorial, we'll use Microsoft Graph API to get user data, so add the **Microsoft Graph API** application. Click the plus sign in the application's row and then click the check mark at the top right to add it. Then click the check mark at the bottom right to continue.
 
 11. In the **Microsoft Graph API** row, select **Delegated Permissions**, and in the selection list, select **Read all users' basic profiles**, **Read items in all site collections**, **Read signed-in user's files**, and **Access directory as the signed in user**.
 
@@ -47,7 +47,7 @@ This sample requires the following:
 
 ### Configure the app to allow the OAuth 2.0 implicit grant flow
 
-In order to get an access token for Microsoft Graph requests, the application will use the OAuth implicit grant flow. You need to update the application's manifest to allow the OAuth implicit grant flow because it is not allowed by default. 
+In order to get an access token for Microsoft Graph API requests, the application will use the OAuth implicit grant flow. You need to update the application's manifest to allow the OAuth implicit grant flow because it is not allowed by default. 
 
 1. Select the **Configure** tab of the application's entry in the Azure Management Portal. 
 
