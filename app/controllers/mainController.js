@@ -77,7 +77,7 @@
      * Sets class of selected user.
      */
     function setUserClass (objectId) {
-      if (objectId === vm.activeUser.objectId) {
+      if (objectId === vm.activeUser.id) {
         return 'active';
       } else {
         return '';
@@ -113,7 +113,7 @@
      */
     function getUserInfo () {
       // Get the selected user's profile picture.
-      office365.getProfilePicture(vm.activeUser.objectId)
+      office365.getProfilePicture(vm.activeUser.id)
         .then(function (res) {
           // Convert raw image data to encoded data to display.
           console.log(res);
@@ -130,7 +130,7 @@
         });
 
       // Get the selected user's direct reports.
-      office365.getDirectReports(vm.activeUser.objectId)
+      office365.getDirectReports(vm.activeUser.id)
         .then(function (res) {
           // Bind data to the view model.
           vm.activeUser.directReports = res.data.value;
@@ -139,7 +139,7 @@
         });
 
       // Get the selected user's manager.
-      office365.getManager(vm.activeUser.objectId)
+      office365.getManager(vm.activeUser.id)
         .then(function (res) {
           // Bind data to the view model.
           vm.activeUser.manager = res.data;
@@ -152,7 +152,7 @@
         });
 
       // Get the groups the selected user is a member of.
-      office365.getGroups(vm.activeUser.objectId)
+      office365.getGroups(vm.activeUser.id)
         .then(function (res) {
           // Bind data to the view model.
           vm.activeUser.groups = res.data.value;
@@ -166,7 +166,7 @@
      * this bug is fixed.
      */
     // Get the selected user's files that are shared with the signed-in user.
-    // office365.getFiles(vm.activeUser.objectId)
+    // office365.getFiles(vm.activeUser.id)
     // 	.then(function (res) {
     // 		// Bind data to the view model.
     // 		vm.activeUser.files = res.data.value;
