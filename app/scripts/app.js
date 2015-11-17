@@ -12,8 +12,8 @@
     ])
     .config(config);
 
-  function config($routeProvider, $httpProvider, adalAuthenticationServiceProvider, cfpLoadingBarProvider) {
-    // Configure the routes. 
+  function config ($routeProvider, $httpProvider, adalAuthenticationServiceProvider, cfpLoadingBarProvider) {
+    // Configure the routes.
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -23,8 +23,8 @@
       .otherwise({
         redirectTo: '/'
       });
-    
-    // Configure ADAL JS. 
+
+    // Configure ADAL JS.
     adalAuthenticationServiceProvider.init(
       {
         clientId: clientId,
@@ -33,12 +33,12 @@
         }
       },
       $httpProvider
-      );
-    
+    );
+
     // Loading bar configuration options.
     cfpLoadingBarProvider.includeSpinner = false;
-  };
-})(); 
+  }
+})();
 
 // *********************************************************
 //
@@ -68,4 +68,3 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 // *********************************************************
-

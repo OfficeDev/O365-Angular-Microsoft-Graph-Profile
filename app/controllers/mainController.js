@@ -3,182 +3,192 @@
 */
 
 (function () {
-	angular
-		.module('profileApp')
-		.controller('MainController', MainController);
+  angular
+    .module('profileApp')
+    .controller('MainController', MainController);
 
-	MainController.$inject = ['$scope', '$log', '$q', 'adalAuthenticationService', 'office365Factory'];
-	
-	/**
-	 * The MainController code.
-	 */
-	function MainController($scope, $log, $q, adalAuthenticationService, office365) {
-		var vm = this;
-		
-		// Properties
-		vm.users = [];
-		vm.activeUser;
-		 
-		// Methods
-		vm.selectUser = selectUser;
-		vm.setUserClass = setUserClass;
-		vm.setManager = setManager;
-		
-		/////////////////////////////////////////
-		// End of exposed properties and methods.
-		
-		/**
-		 * This function does any initialization work the 
-		 * controller needs.
-		 */
-		(function activate() {
-			$log.info('MainController invoked.');
-			
-			// Once the user is logged in, fetch the data.
-			if (adalAuthenticationService.userInfo.isAuthenticated) {
-				getUsersAsync()
-					.then(function () {
-						getUserInfo();
-					}, function (err) {
-						$log.error(err);
-					});
-			}
-		})();
-		
-		/**
-		 * Clears the last selected user's data from the view model
-		 * and gets the data for the new selected user.
-		 */
-		function selectUser() {
-			// Switch to first tab.
-			vm.makeUserDetailsTabActive = true;
-			
-			// Clear current data.
-			vm.activeUser.directReports = [];
-			vm.activeUser.manager = null;
-			vm.activeUser.groups = [];
-			vm.activeUser.files = [];
-			
-			// Get user's data from Office 365.
-			getUserInfo();
-		};
-		
-		/**
-		 * Sets the user's manager as the selected user if a manager exists.
-		 */
-		function setManager() {
-			if (vm.activeUser.manager) {
-				vm.activeUser = vm.activeUser.manager;
-				vm.selectUser();
-			}
-		};
-		
-		/**
-		 * Sets class of selected user.
-		 */
-		function setUserClass(objectId) {
-			if (objectId === vm.activeUser.objectId) {
-				return 'active';
-			}
-			else {
-				return '';
-			}
-		};
-		
-		/**
-		 * Gets all users in the tenant.
-		 */
-		function getUsersAsync() {
-			return $q(function (resolve, reject) {
-				office365.getUsers()
-					.then(function (res) {
-						// Bind data to the view model.
-						vm.users = res.data.value;	
-					
-						// Set the selected user as the first user in the directory.		
-						vm.activeUser = vm.users[0];
-						vm.activeUser.directReports = [];
-						vm.activeUser.manager = null;
-						vm.activeUser.groups = [];
-						vm.activeUser.files = [];
+  MainController.$inject = ['$scope', '$log', '$q', 'adalAuthenticationService', 'office365Factory'];
 
-						resolve();
-					}, function (err) {
-						reject(err);
-					});
-			});
-		};
-		
-		/**
-		 * Gets active user's direct reports, groups, and files.
-		 */
-		function getUserInfo() {
-			// Get the selected user's profile picture.
-			office365.getProfilePicture(vm.activeUser.objectId)
-				.then(function (res) {	
-					// Convert raw image data to encoded data to display.
-					var dataArray = new Uint8Array(res.data);
-					var dataBinary = String.fromCharCode.apply(null, dataArray);
-					var dataEncoded = btoa(dataBinary);
-					var imageUrl = "data:image/*;base64," + dataEncoded;
-						
-					// Bind data to the view model.
-					vm.activeUser.photoUrl = imageUrl;
+  /**
+   * The MainController code.
+   */
+  function MainController ($scope, $log, $q, adalAuthenticationService, office365) {
+    var vm = this;
 
-					$log.debug('Photo data: ', res);
-					$log.debug('Photo URL: ', vm.activeUser.photoUrl);
-				}, function (err) {
-					$log.error('User does not have a thumbnail photo.', err);
-					vm.activeUser.photoUrl = 'assets/avatar.png';
-				});
-				
-			// Get the selected user's direct reports.
-			office365.getDirectReports(vm.activeUser.objectId)
-				.then(function (res) {
-					// Bind data to the view model.
-					vm.activeUser.directReports = res.data.value;
-				}, function (err) {
-					$log.error(err);
-				});
-					
-			// Get the selected user's manager.
-			office365.getManager(vm.activeUser.objectId)
-				.then(function (res) {
-					// Bind data to the view model.
-					vm.activeUser.manager = res.data;
-				}, function (err) {
-					if (err.status === 404) {
-						$log.error('The selected user does not have a manager.');
-					}
-					else {
-						$log.error(err);
-					}
-				});
-					
-			// Get the groups the selected user is a member of.
-			office365.getGroups(vm.activeUser.objectId)
-				.then(function (res) {
-					// Bind data to the view model.
-					vm.activeUser.groups = res.data.value;
-				}, function (err) {
-					$log.error(err);
-				});
-	
-			/**
-			 * As of 11/9, this function has a bug where it returns a bad error code
-			 * that causes the application to be reloaded indefinitely. Removing until
-			 * this bug is fixed.
-			 */
-			// Get the selected user's files that are shared with the signed-in user.
-			// office365.getFiles(vm.activeUser.objectId)
-			// 	.then(function (res) {
-			// 		// Bind data to the view model.
-			// 		vm.activeUser.files = res.data.value;
-			// 	}, function (err) {
-			// 		$log.error('Unable to get files.', err);
-			// 	});
-		};
-	};
+    // Properties
+    vm.users = [];
+    vm.activeUser;
+
+    // Methods
+    vm.selectUser = selectUser;
+    vm.setUserClass = setUserClass;
+    vm.setManager = setManager;
+
+    // *********************************** //
+    // End of exposed properties and methods.
+
+    /**
+     * This function does any initialization work the
+     * controller needs.
+     */
+    (function activate () {
+      $log.info('MainController invoked.');
+
+      // Once the user is logged in, fetch the data.
+      if (adalAuthenticationService.userInfo.isAuthenticated) {
+        getUsersAsync()
+          .then(function () {
+            getUserInfo();
+          }, function (err) {
+            $log.error(err);
+          });
+      }
+    })();
+
+    /**
+     * Clears the last selected user's data from the view model
+     * and gets the data for the new selected user.
+     */
+    function selectUser () {
+      // Switch to first tab.
+      vm.makeUserDetailsTabActive = true;
+
+      // Clear current data.
+      vm.activeUser.directReports = [];
+      vm.activeUser.manager = null;
+      vm.activeUser.groups = [];
+      vm.activeUser.files = [];
+
+      // Get user's data from Office 365.
+      getUserInfo();
+    }
+
+    /**
+     * Sets the user's manager as the selected user if a manager exists.
+     */
+    function setManager () {
+      if (vm.activeUser.manager) {
+        vm.activeUser = vm.activeUser.manager;
+        vm.selectUser();
+      }
+    }
+
+    /**
+     * Sets class of selected user.
+     */
+    function setUserClass (objectId) {
+      if (objectId === vm.activeUser.objectId) {
+        return 'active';
+      } else {
+        return '';
+      }
+    }
+
+    /**
+     * Gets all users in the tenant.
+     */
+    function getUsersAsync () {
+      return $q(function (resolve, reject) {
+        office365.getUsers()
+          .then(function (res) {
+            // Bind data to the view model.
+            vm.users = res.data.value.sort(byDisplayName);
+
+            // Set the selected user as the first user in the directory.
+            vm.activeUser = vm.users[0];
+            vm.activeUser.directReports = [];
+            vm.activeUser.manager = null;
+            vm.activeUser.groups = [];
+            vm.activeUser.files = [];
+
+            resolve();
+          }, function (err) {
+            reject(err);
+          });
+      });
+    }
+
+    /**
+     * Gets active user's direct reports, groups, and files.
+     */
+    function getUserInfo () {
+      // Get the selected user's profile picture.
+      office365.getProfilePicture(vm.activeUser.objectId)
+        .then(function (res) {
+          // Convert raw image data to encoded data to display.
+          console.log(res);
+          var imageUrl = 'data:image/*;base64,' + res.data;
+
+          // Bind data to the view model.
+          vm.activeUser.photoUrl = imageUrl;
+
+          $log.debug('Photo data: ', res);
+          $log.debug('Photo URL: ', vm.activeUser.photoUrl);
+        }, function (err) {
+          $log.error('User does not have a thumbnail photo.', err);
+          vm.activeUser.photoUrl = 'assets/avatar.png';
+        });
+
+      // Get the selected user's direct reports.
+      office365.getDirectReports(vm.activeUser.objectId)
+        .then(function (res) {
+          // Bind data to the view model.
+          vm.activeUser.directReports = res.data.value;
+        }, function (err) {
+          $log.error(err);
+        });
+
+      // Get the selected user's manager.
+      office365.getManager(vm.activeUser.objectId)
+        .then(function (res) {
+          // Bind data to the view model.
+          vm.activeUser.manager = res.data;
+        }, function (err) {
+          if (err.status === 404) {
+            $log.error('The selected user does not have a manager.');
+          } else {
+            $log.error(err);
+          }
+        });
+
+      // Get the groups the selected user is a member of.
+      office365.getGroups(vm.activeUser.objectId)
+        .then(function (res) {
+          // Bind data to the view model.
+          vm.activeUser.groups = res.data.value;
+        }, function (err) {
+          $log.error(err);
+        });
+
+    /**
+     * As of 11/9, this function has a bug where it returns a bad error code
+     * that causes the application to be reloaded indefinitely. Removing until
+     * this bug is fixed.
+     */
+    // Get the selected user's files that are shared with the signed-in user.
+    // office365.getFiles(vm.activeUser.objectId)
+    // 	.then(function (res) {
+    // 		// Bind data to the view model.
+    // 		vm.activeUser.files = res.data.value;
+    // 	}, function (err) {
+    // 		$log.error('Unable to get files.', err);
+    // 	});
+    }
+
+    /**
+     * @name byDisplayName
+     * @desc Comparison function to sort users by displayName.
+     */
+    function byDisplayName (a, b) {
+      if (a.displayName < b.displayName) {
+        return -1;
+      } else if (a.displayName > b.displayName) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
 })();
 
 // *********************************************************

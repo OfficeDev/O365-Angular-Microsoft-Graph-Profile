@@ -3,101 +3,100 @@
 */
 
 (function () {
-	angular
-		.module('profileApp')
-		.factory('office365Factory', office365Factory);
+  angular
+    .module('profileApp')
+    .factory('office365Factory', office365Factory);
 
-	function office365Factory($log, $http) {
-		var office365 = {}; 
- 
-		// Methods
-		office365.getUsers = getUsers;
-		office365.getDirectReports = getDirectReports;
-		office365.getGroups = getGroups;
-		office365.getFiles = getFiles;
-		office365.getManager = getManager;
-		office365.getProfilePicture = getProfilePicture;
-		
-		/////////////////////////////////////////
-		// End of exposed properties and methods.
-		
-		var baseUrl = 'https://graph.microsoft.com/beta/myOrganization';
-		
-		/**
-		 * Gets all users in the tenant.
-		 */
-		function getUsers() {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users'
-			};
+  function office365Factory ($log, $http) {
+    var office365 = {};
 
-			return $http(request);
-		};
-		
-		/**
-		 * Gets the user's direct reports.
-		 */
-		function getDirectReports(objectId) {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/directReports'
-			};
+    // Methods
+    office365.getUsers = getUsers;
+    office365.getDirectReports = getDirectReports;
+    office365.getGroups = getGroups;
+    office365.getFiles = getFiles;
+    office365.getManager = getManager;
+    office365.getProfilePicture = getProfilePicture;
 
-			return $http(request);
-		};
-		
-		/**
-		 * Gets the groups the user is a member of.
-		 */
-		function getGroups(objectId) {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/memberOf'
-			};
+    // *********************************** //
+    // End of exposed properties and methods.
 
-			return $http(request);
-		};
-		
-		/**
-		 * Gets the user's files.
-		 */
-		function getFiles(objectId) {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/drive/root/children'
-			};
+    var baseUrl = 'https://graph.microsoft.com/v1.0/myOrganization';
 
-			return $http(request);
-		};
-		
-		/**
-		 * Gets the user's manager.
-		 */
-		function getManager(objectId) {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/manager'
-			};
+    /**
+     * Gets all users in the tenant.
+     */
+    function getUsers () {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users'
+      };
 
-			return $http(request);
-		};
-		
-		/**
-		 * Gets the user's profile picture.
-		 */
-		function getProfilePicture(objectId) {
-			var request = {
-				method: 'GET',
-				url: baseUrl + '/users/' + objectId + '/thumbnailPhoto',
-				responseType: 'arraybuffer'
-			};
+      return $http(request);
+    }
 
-			return $http(request);
-		};
+    /**
+     * Gets the user's direct reports.
+     */
+    function getDirectReports (objectId) {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users/' + objectId + '/directReports'
+      };
 
-		return office365;
-	};
+      return $http(request);
+    }
+
+    /**
+     * Gets the groups the user is a member of.
+     */
+    function getGroups (objectId) {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users/' + objectId + '/memberOf'
+      };
+
+      return $http(request);
+    }
+
+    /**
+     * Gets the user's files.
+     */
+    function getFiles (objectId) {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users/' + objectId + '/drive/root/children'
+      };
+
+      return $http(request);
+    }
+
+    /**
+     * Gets the user's manager.
+     */
+    function getManager (objectId) {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users/' + objectId + '/manager'
+      };
+
+      return $http(request);
+    }
+
+    /**
+     * Gets the user's profile picture.
+     */
+    function getProfilePicture (objectId) {
+      var request = {
+        method: 'GET',
+        url: baseUrl + '/users/' + objectId + '/photo/$value'
+      };
+
+      return $http(request);
+    }
+
+    return office365;
+  }
 })();
 
 // *********************************************************
