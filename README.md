@@ -39,9 +39,9 @@ This sample requires the following:
 
 9. Scroll down to the **permissions to other applications** section and click the **Add application** button.
 
-10. In this tutorial, we'll use Microsoft Graph API to get user data, so add the **Microsoft Graph API** application. Click the plus sign in the application's row and then click the check mark at the top right to add it. Then click the check mark at the bottom right to continue.
+10. In this tutorial, we'll use Microsoft Graph API to get user data, so add the **Microsoft Graph** application. Click the plus sign in the application's row and then click the check mark at the top right to add it. Then click the check mark at the bottom right to continue.
 
-11. In the **Microsoft Graph API** row, select **Delegated Permissions**, and in the selection list, select **Read all users' basic profiles**, **Read items in all site collections**, **Read signed-in user's files**, **Access directory as the signed in user**, and **Sign in and read user profile**.
+11. In the **Microsoft Graph** row, select **Delegated Permissions**, and in the selection list, select **Read all users' basic profiles**, **Read items in all site collections**, **Read signed-in user's files**, **Access directory as the signed in user**, and **Sign in and read user profile**.
 
 12. Click **Save** to save the app's configuration.
 
