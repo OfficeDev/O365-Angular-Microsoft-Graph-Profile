@@ -1,3 +1,15 @@
+---
+topic: sample
+products:
+- SharePoint
+- OneDrive
+- Office 365
+languages:
+- AngularJS
+extensions:
+  contentType: samples
+  createdDate: 7/16/2015 8:59:32 AM
+---
 # Office 365 Profile Angular sample
 
 The Office 365 Profile Angular sample uses the Microsoft Graph API (previously called Office 365 unified API) to get user profile data from various services such as Active Directory, SharePoint, and OneDrive.
