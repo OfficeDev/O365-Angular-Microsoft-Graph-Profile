@@ -1,13 +1,15 @@
 ---
 topic: sample
 products:
-- SharePoint
-- OneDrive
-- Office 365
+- office-sp
+- office-onedrive
+- office-365
 languages:
-- AngularJS
+- nodejs
 extensions:
   contentType: samples
+  platforms:
+  - AngularJS
   createdDate: 7/16/2015 8:59:32 AM
 ---
 # Office 365 Profile Angular sample
