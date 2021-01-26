@@ -1,18 +1,6 @@
----
-page_type: sample
-products:
-- office-sp
-- office-onedrive
-- office-365
-languages:
-- nodejs
-extensions:
-  contentType: samples
-  platforms:
-  - AngularJS
-  createdDate: 7/16/2015 8:59:32 AM
----
-# Office 365 Profile Angular sample
+# [ARCHIVED] Office 365 Profile Angular sample
+
+**Note:** This repo is archived and no longer actively maintained. Security vulnerabilities may exist in the project, or its dependencies. If you plan to reuse or run any code from this repo, be sure to perform appropriate security checks on the code or dependencies first. Do not use this project as the starting point of a production Office Add-in. Always start your production code by using the Office/SharePoint development workload in Visual Studio, or the [Yeoman generator for Office Add-ins](https://github.com/OfficeDev/generator-office), and follow security best practices as you develop the add-in.
 
 The Office 365 Profile Angular sample uses the Microsoft Graph API (previously called Office 365 unified API) to get user profile data from various services such as Active Directory, SharePoint, and OneDrive.
 
